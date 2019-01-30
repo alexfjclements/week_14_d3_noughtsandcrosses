@@ -7,7 +7,33 @@ class GameContainer extends Component{
     super(props);
     this.state = {
       players: ["X", "O"],
-      board: [ null, null, null, null, null, null, null, null, null],
+      board: ["", "", "", "", "", "", "", "", ""]
+    }
+    this.handlePlayerMove = this.handlePlayerMove.bind(this);
+    this.changeValueOfSquare = this.changeValueOfSquare.bind(this);
+  }
+
+  handlePlayerMove(event){
+    const index = event.target.id;
+    console.log(index);
+    this.changeValueOfSquare(index);
+
+  }
+
+  changeValueOfSquare(index){
+    console.log("Hello world");
+    if (this.state.board[index] === ""){
+
+      const updatedBoard = Array.from(this.state.board);
+      updatedBoard[index] = this.state.players[0];
+
+      const updatedPlayers = Array.from(this.state.players)
+      updatedPlayers.reverse();
+
+      this.setState({
+        board: updatedBoard,
+        players: updatedPlayers
+      });
     }
   }
 
@@ -15,7 +41,7 @@ class GameContainer extends Component{
     return (
       <Fragment>
       <h1>Noughts and Crosses</h1>
-      <Board/>
+      <Board handlePlayerMove={this.handlePlayerMove} players={this.state.players} board={this.state.board}/>
       </Fragment>
     );
   }
