@@ -15,13 +15,11 @@ class GameContainer extends Component{
 
   handlePlayerMove(event){
     const index = event.target.id;
-    console.log(index);
     this.changeValueOfSquare(index);
 
   }
 
   changeValueOfSquare(index){
-    console.log("Hello world");
     if (this.state.board[index] === ""){
 
       const updatedBoard = Array.from(this.state.board);
@@ -42,6 +40,7 @@ class GameContainer extends Component{
       <Fragment>
       <h1>Noughts and Crosses</h1>
       <Board handlePlayerMove={this.handlePlayerMove} players={this.state.players} board={this.state.board}/>
+      <Logic board={this.state.board} />
       </Fragment>
     );
   }
